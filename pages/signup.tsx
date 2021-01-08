@@ -1,4 +1,3 @@
-import { GetStaticProps } from 'next';
 import { useState, FC } from 'react';
 
 const SignUp: FC = () => {
@@ -81,12 +80,6 @@ const SignUp: FC = () => {
       </div>
     </div>
   );
-};
-
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {}, // will be passed to the page component as props
-  };
 };
 
 export default SignUp;
