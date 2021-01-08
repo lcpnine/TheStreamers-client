@@ -18,5 +18,6 @@
   },
   "globals": {
     "React": "writable"
-  }
+  },
+  "ignorePatterns": ["next.config.js"]
 }
