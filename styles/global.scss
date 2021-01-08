@@ -1,3 +1,15 @@
 body {
-  background-color: #c1afac;
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
