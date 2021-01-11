@@ -1,6 +1,15 @@
 import { useState, FC } from 'react';
+import { useRouter } from 'next/router';
 
 const SignUp: FC = () => {
+  const router = useRouter();
+  const pushRouter = (href: string) => (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    e.preventDefault();
+    router.push(href);
+  };
+
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -67,15 +76,25 @@ const SignUp: FC = () => {
             className="modal-input"
           />
           <div className="modal-link">
-            <div className="modal-input modal-link-button">Find Password</div>
-            <div className="modal-input modal-link-button">Sign In</div>
+            <button
+              className="btn modal-input modal-link-btn"
+              onClick={pushRouter('/find-password')}
+            >
+              Find Password
+            </button>
+            <button
+              className="btn modal-input modal-link-btn"
+              onClick={pushRouter('/')}
+            >
+              Sign In
+            </button>
           </div>
-          <input
-            className="modal-input"
-            type="submit"
-            value="Sign Up"
+          <button
+            className="btn modal-input modal-submit-btn"
             onClick={handleSubmit}
-          />
+          >
+            Sign Up
+          </button>
         </div>
       </div>
     </div>

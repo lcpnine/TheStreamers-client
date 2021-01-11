@@ -1,6 +1,8 @@
 $white: #fff;
 $black: #000;
 $link-blue: #001eff;
+$maroon: #800000;
+$firebrick: #b22222;
 
 .auth-container {
   display: flex;
@@ -19,7 +21,7 @@ $link-blue: #001eff;
   align-items: center;
   justify-content: center;
   width: 500px;
-  border: 1px solid $black;
+  border: 2px solid $maroon;
   border-radius: 2.5%;
 }
 
@@ -55,9 +57,11 @@ $link-blue: #001eff;
   height: 100%;
 }
 
-.input-validation-button {
+.input-validation-btn {
   width: 25%;
   height: 100%;
+  background-color: #b22222;
+  color: $white;
 }
 
 .modal-link {
@@ -65,7 +69,7 @@ $link-blue: #001eff;
   justify-content: space-between;
 }
 
-.modal-link-button {
+.modal-link-btn {
   display: flex;
   justify-content: center;
   width: 50%;
@@ -74,4 +78,9 @@ $link-blue: #001eff;
     color: $link-blue;
     text-decoration: underline;
   }
+}
+
+.modal-submit-btn {
+  color: $white;
+  background-color: $maroon;
 }

@@ -1,6 +1,15 @@
 import { useState, FC } from 'react';
+import { useRouter } from 'next/router';
 
 const FindPassword: FC = () => {
+  const router = useRouter();
+  const pushRouter = (href: string) => (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    e.preventDefault();
+    router.push(href);
+  };
+
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
@@ -55,7 +64,10 @@ const FindPassword: FC = () => {
               onChange={handleInputChange}
               className="validation-input"
             />
-            <button name="email validation" className="input-validation-button">
+            <button
+              name="email validation"
+              className="btn input-validation-btn"
+            >
               Send Code
             </button>
           </div>
@@ -68,7 +80,10 @@ const FindPassword: FC = () => {
               onChange={handleInputChange}
               className="validation-input"
             />
-            <button name="email validation" className="input-validation-button">
+            <button
+              name="email validation"
+              className="btn input-validation-btn"
+            >
               Check Code
             </button>
           </div>
@@ -89,15 +104,25 @@ const FindPassword: FC = () => {
             className="modal-input"
           />
           <div className="modal-link">
-            <div className="modal-input modal-link-button">Sign In</div>
-            <div className="modal-input modal-link-button">Sign Up</div>
+            <button
+              className="btn modal-input modal-link-btn"
+              onClick={pushRouter('/')}
+            >
+              Sign In
+            </button>
+            <button
+              className="btn modal-input modal-link-btn"
+              onClick={pushRouter('/signup')}
+            >
+              Sign Up
+            </button>
           </div>
-          <input
-            className="modal-input"
-            type="submit"
-            value="Change Password"
+          <button
+            className="btn modal-input modal-submit-btn"
             onClick={handleSubmit}
-          />
+          >
+            Find Password
+          </button>
         </div>
       </div>
     </div>
