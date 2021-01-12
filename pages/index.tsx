@@ -62,9 +62,9 @@ const SignIn: FC = () => {
           <div className="modal-link">
             <button
               className="btn modal-input modal-link-btn"
-              onClick={pushRouter('/find-password')}
+              onClick={pushRouter('/change-password')}
             >
-              Find Password
+              Change Password
             </button>
             <button
               className="btn modal-input modal-link-btn"

@@ -2,7 +2,7 @@ import { useState, FC } from 'react';
 import { useRouter } from 'next/router';
 import myAxios from '../utils/myAxios';
 
-const FindPassword: FC = () => {
+const ChangePassword: FC = () => {
   const router = useRouter();
   const pushRouter = (href: string) => (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -11,9 +11,9 @@ const FindPassword: FC = () => {
     router.push(href);
   };
 
-  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
 
@@ -54,16 +54,8 @@ const FindPassword: FC = () => {
   return (
     <div className="auth-container">
       <div className="auth-modal">
-        <div className="modal-header">Find Password</div>
+        <div className="modal-header">Change Password</div>
         <div className="modal-content">
-          <input
-            name="username"
-            placeholder="Username"
-            type="text"
-            value={username}
-            onChange={handleInputChange}
-            className="modal-input"
-          />
           <div className="modal-input validation-input-div">
             <input
               name="email"
@@ -96,6 +88,14 @@ const FindPassword: FC = () => {
               Check Code
             </button>
           </div>
+          <input
+            name="username"
+            placeholder="Username"
+            type="text"
+            value={username}
+            onChange={handleInputChange}
+            className="modal-input"
+          />
           <input
             name="password"
             placeholder="Password"
@@ -130,7 +130,7 @@ const FindPassword: FC = () => {
             className="btn modal-input modal-submit-btn"
             onClick={handleSubmit}
           >
-            Find Password
+            Change Password
           </button>
         </div>
       </div>
@@ -138,4 +138,4 @@ const FindPassword: FC = () => {
   );
 };
 
-export default FindPassword;
+export default ChangePassword;

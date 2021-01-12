@@ -13,6 +13,7 @@ const SignUp: FC = () => {
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [code, setCode] = useState('');
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
 
@@ -23,6 +24,9 @@ const SignUp: FC = () => {
     }
     if (target.name === 'email') {
       setEmail(target.value);
+    }
+    if (target.name === 'code') {
+      setCode(target.value);
     }
     if (target.name === 'password') {
       setPassword(target.value);
@@ -53,19 +57,43 @@ const SignUp: FC = () => {
       <div className="auth-modal">
         <div className="modal-header">Sign Up</div>
         <div className="modal-content">
+          <div className="modal-input validation-input-div">
+            <input
+              name="email"
+              placeholder="Email"
+              type="email"
+              value={email}
+              onChange={handleInputChange}
+              className="validation-input"
+            />
+            <button
+              name="email validation"
+              className="btn input-validation-btn"
+            >
+              Send Code
+            </button>
+          </div>
+          <div className="modal-input validation-input-div">
+            <input
+              name="code"
+              placeholder="Code"
+              type="text"
+              value={code}
+              onChange={handleInputChange}
+              className="validation-input"
+            />
+            <button
+              name="email validation"
+              className="btn input-validation-btn"
+            >
+              Check Code
+            </button>
+          </div>
           <input
             name="username"
             placeholder="Username"
             type="text"
             value={username}
-            onChange={handleInputChange}
-            className="modal-input"
-          />
-          <input
-            name="email"
-            placeholder="Email"
-            type="email"
-            value={email}
             onChange={handleInputChange}
             className="modal-input"
           />
@@ -88,9 +116,9 @@ const SignUp: FC = () => {
           <div className="modal-link">
             <button
               className="btn modal-input modal-link-btn"
-              onClick={pushRouter('/find-password')}
+              onClick={pushRouter('/change-password')}
             >
-              Find Password
+              Change Password
             </button>
             <button
               className="btn modal-input modal-link-btn"
