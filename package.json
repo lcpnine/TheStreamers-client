@@ -1,7 +1,7 @@
 {
-  "name": "sync-memo-client",
+  "name": "the-streamers-client",
   "version": "1.0.0",
-  "description": "sync-memo's client part with typescript",
+  "description": "The Streamer's client part(web) with typescript",
   "scripts": {
     "dev": "next",
     "build": "next build",
