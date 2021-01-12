@@ -1,5 +1,6 @@
 import { useState, FC } from 'react';
 import { useRouter } from 'next/router';
+import myAxios from '../utils/myAxios';
 
 const FindPassword: FC = () => {
   const router = useRouter();
@@ -35,10 +36,18 @@ const FindPassword: FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<EventTarget>) => {
-    alert(
-      `username : ${username} \npassword : ${password} \ncheck password : ${checkPassword}`
-    );
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    const result = await myAxios.put('auth/updatepassword', {
+      email: username,
+      password: password,
+    });
+    const { status } = result;
+    if (status === 200) {
+      alert('Changed password successfully');
+      router.push('/');
+    }
     e.preventDefault();
   };
 

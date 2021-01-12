@@ -1,5 +1,6 @@
 import { useState, FC } from 'react';
 import { useRouter } from 'next/router';
+import myAxios from '../utils/myAxios';
 
 const SignUp: FC = () => {
   const router = useRouter();
@@ -31,10 +32,19 @@ const SignUp: FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<EventTarget>) => {
-    alert(
-      `username : ${username} \npassword : ${password} \ncheck password : ${checkPassword}`
-    );
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    const result = await myAxios.put('auth/signup', {
+      email,
+      username,
+      password,
+    });
+    const { status } = result;
+    if (status === 201) {
+      alert('Signed up successfully');
+      router.push('/');
+    }
     e.preventDefault();
   };
 
