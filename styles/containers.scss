@@ -1,8 +1,8 @@
 $white: #fff;
 $black: #000;
 $link-blue: #001eff;
-$maroon: #800000;
-$firebrick: #b22222;
+$valid-green: #46c43b;
+$main: #EA9000;
 
 .auth-container {
   display: flex;
@@ -21,7 +21,7 @@ $firebrick: #b22222;
   align-items: center;
   justify-content: center;
   width: 500px;
-  border: 2px solid $maroon;
+  border: 2px solid $main;
   border-radius: 2.5%;
 }
 
@@ -60,7 +60,7 @@ $firebrick: #b22222;
 .input-validation-btn {
   width: 25%;
   height: 100%;
-  background-color: #b22222;
+  background-color: $main;
   color: $white;
 }
 
@@ -82,5 +82,20 @@ $firebrick: #b22222;
 
 .modal-submit-btn {
   color: $white;
-  background-color: $maroon;
+  background-color: $main;
+}
+
+.modal-description {
+  display: flex;
+  width: 100%;
+  font-size: 12px;
+  margin-left: 12px;
+}
+
+.description-invalid {
+  color: $main;
+}
+
+.description-valid {
+  color: $valid-green;
 }
