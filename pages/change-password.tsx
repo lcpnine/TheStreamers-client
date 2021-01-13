@@ -1,6 +1,7 @@
 import { useState, FC } from 'react';
 import { useRouter } from 'next/router';
 import myAxios from '../utils/myAxios';
+import Timer from '../components/timer';
 
 const ChangePassword: FC = () => {
   const router = useRouter();
@@ -16,6 +17,9 @@ const ChangePassword: FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
+
+  const [isCodeSent, setIsCodeSent] = useState(false);
+  const [isCodeChecked, setIsCodeChecked] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const target = e.target;
@@ -33,6 +37,32 @@ const ChangePassword: FC = () => {
     }
     if (target.name === 'checkPassword') {
       setCheckPassword(target.value);
+    }
+  };
+
+  const handleSendCode = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    const response = await myAxios.post('auth/sendcode', { email });
+    const { status } = response;
+    if (status === 200) {
+      setIsCodeSent(true);
+    } else {
+      alert('Please try again with valid email format');
+    }
+  };
+
+  const handleCheckCode = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    const response = await myAxios.post('auth/checkcode', { email, code });
+    const { status } = response;
+    if (status === 200) {
+      setIsCodeChecked(true);
+    } else if (status === 400) {
+      alert('Code is not valid');
     }
   };
 
@@ -59,17 +89,19 @@ const ChangePassword: FC = () => {
           <div className="modal-input validation-input-div">
             <input
               name="email"
-              placeholder="Email"
+              placeholder="Email - Email has to be unique"
               type="email"
               value={email}
               onChange={handleInputChange}
               className="validation-input"
+              readOnly={isCodeChecked}
             />
             <button
               name="email validation"
               className="btn input-validation-btn"
+              onClick={handleSendCode}
             >
-              Send Code
+              {isCodeSent ? <Timer maxSec={600} /> : 'Send Code'}
             </button>
           </div>
           <div className="modal-input validation-input-div">
@@ -80,12 +112,14 @@ const ChangePassword: FC = () => {
               value={code}
               onChange={handleInputChange}
               className="validation-input"
+              readOnly={isCodeChecked}
             />
             <button
               name="email validation"
               className="btn input-validation-btn"
+              onClick={handleCheckCode}
             >
-              Check Code
+              {isCodeChecked ? 'Checked' : 'Check Code'}
             </button>
           </div>
           <input
