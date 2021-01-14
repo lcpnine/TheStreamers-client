@@ -1,3 +1,6 @@
+$black: #000;
+$main: #EA9000;
+
 body {
   position: absolute;
   margin: 0px;
@@ -22,4 +25,30 @@ body {
   border-radius: 5px;
   background-color: transparent;
   outline: none;
+  cursor: pointer;
+}
+
+.nav {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  justify-content: space-between;
+  background-color: $main;
+  color: $black;
+}
+
+.nav__logo {
+  margin: 0px 10px;
+}
+
+.langs {
+  display: flex;
+  margin: 0px 10px;
+}
+
+.langs-option {
+  margin: 0px 10px;
+  font-weight: 700;
 }
