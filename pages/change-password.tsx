@@ -1,7 +1,7 @@
 import { useState, FC } from 'react';
 import { useRouter } from 'next/router';
 import myAxios from '../utils/myAxios';
-import Timer from '../components/timer';
+import Timer from '../components/Timer';
 
 const ChangePassword: FC = () => {
   const router = useRouter();
