@@ -1,6 +1,13 @@
 import { FC } from 'react';
+import { useRouter } from 'next/router';
 
 const Nav: FC = () => {
+  const router = useRouter();
+  const { pathname } = router;
+
+  const useEnglish = () => router.push(pathname, pathname, { locale: 'en-US' });
+  const useKorean = () => router.push(pathname, pathname, { locale: 'ko-KR' });
+
   return (
     <div className="nav">
       <div className="nav__logo">
@@ -8,8 +15,12 @@ const Nav: FC = () => {
       </div>
       <div className="nav__info">
         <div className="langs">
-          <div className="btn langs-option">English</div>
-          <div className="btn langs-option">한국어</div>
+          <div className="btn langs-option" onClick={useEnglish}>
+            English
+          </div>
+          <div className="btn langs-option" onClick={useKorean}>
+            한국어
+          </div>
         </div>
       </div>
     </div>
