@@ -1,9 +1,45 @@
 import { useState, FC } from 'react';
+import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import myAxios from '../utils/myAxios';
 import Timer from '../components/Timer';
 
-const SignUp: FC = () => {
+interface Props {
+  locale: 'en-US' | 'ko-KR';
+}
+
+const text = {
+  'en-US': {
+    header: 'Sign Up',
+    emailPlaceholder: 'Email - Email has to be unique',
+    emailCheck: 'Send Code',
+    codePlaceholder: 'Enter Code',
+    checkCode: 'Check Code',
+    checked: 'Checked',
+    usernamePlaceholder: 'Username',
+    passwordPlaceholder: 'Password',
+    passwordCheckPlaceholder: 'Check Password',
+    signIn: 'Sign In',
+    signUp: 'Sign Up',
+    changePassword: 'Change Password',
+  },
+  'ko-KR': {
+    header: '회원가입',
+    emailPlaceholder: '이메일 - 중복되는 이메일은 사용할 수 없습니다',
+    codePlaceholder: '코드 입력',
+    emailCheck: '코드 전송',
+    checkCode: '코드 확인',
+    checked: '확인됨',
+    usernamePlaceholder: '유저명',
+    passwordPlaceholder: '비밀번호',
+    passwordCheckPlaceholder: '비밀번호 확인',
+    signIn: '로그인',
+    signUp: '회원가입',
+    changePassword: '비밀번호 변경',
+  },
+};
+
+const SignUp: FC<Props> = ({ locale }: Props) => {
   const router = useRouter();
   const pushRouter = (href: string) => (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -85,12 +121,12 @@ const SignUp: FC = () => {
   return (
     <div className="auth-container">
       <div className="auth-modal">
-        <div className="modal-header">Sign Up</div>
+        <div className="modal-header">{text[locale].header}</div>
         <div className="modal-content">
           <div className="modal-input validation-input-div">
             <input
               name="email"
-              placeholder="Email - Email has to be unique"
+              placeholder={text[locale].emailPlaceholder}
               type="email"
               value={email}
               onChange={handleInputChange}
@@ -102,13 +138,13 @@ const SignUp: FC = () => {
               className="btn input-validation-btn"
               onClick={handleSendCode}
             >
-              {isCodeSent ? <Timer maxSec={600} /> : 'Send Code'}
+              {isCodeSent ? <Timer maxSec={600} /> : text[locale].emailCheck}
             </button>
           </div>
           <div className="modal-input validation-input-div">
             <input
               name="code"
-              placeholder="Code"
+              placeholder={text[locale].codePlaceholder}
               type="text"
               value={code}
               onChange={handleInputChange}
@@ -120,12 +156,12 @@ const SignUp: FC = () => {
               className="btn input-validation-btn"
               onClick={handleCheckCode}
             >
-              {isCodeChecked ? 'Checked' : 'Check Code'}
+              {isCodeChecked ? text[locale].checked : text[locale].checkCode}
             </button>
           </div>
           <input
             name="username"
-            placeholder="Username"
+            placeholder={text[locale].usernamePlaceholder}
             type="text"
             value={username}
             onChange={handleInputChange}
@@ -133,7 +169,7 @@ const SignUp: FC = () => {
           />
           <input
             name="password"
-            placeholder="Password"
+            placeholder={text[locale].passwordPlaceholder}
             type="password"
             value={password}
             onChange={handleInputChange}
@@ -141,7 +177,7 @@ const SignUp: FC = () => {
           />
           <input
             name="checkPassword"
-            placeholder="Check Password"
+            placeholder={text[locale].passwordCheckPlaceholder}
             type="password"
             value={checkPassword}
             onChange={handleInputChange}
@@ -150,22 +186,22 @@ const SignUp: FC = () => {
           <div className="modal-link">
             <button
               className="btn modal-input modal-link-btn"
-              onClick={pushRouter('/change-password')}
+              onClick={pushRouter('/')}
             >
-              Change Password
+              {text[locale].signIn}
             </button>
             <button
               className="btn modal-input modal-link-btn"
-              onClick={pushRouter('/')}
+              onClick={pushRouter('/change-password')}
             >
-              Sign In
+              {text[locale].changePassword}
             </button>
           </div>
           <button
             className="btn modal-input modal-submit-btn"
             onClick={handleSubmit}
           >
-            Sign Up
+            {text[locale].signUp}
           </button>
         </div>
       </div>
@@ -174,3 +210,13 @@ const SignUp: FC = () => {
 };
 
 export default SignUp;
+
+export const getStaticProps: GetStaticProps = async (props) => {
+  const { locale } = props;
+
+  return {
+    props: {
+      locale,
+    },
+  };
+};

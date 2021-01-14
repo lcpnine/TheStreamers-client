@@ -1,8 +1,32 @@
 import { useState, FC } from 'react';
+import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import myAxios from '../utils/myAxios';
 
-const SignIn: FC = () => {
+interface Props {
+  locale: 'en-US' | 'ko-KR';
+}
+
+const text = {
+  'en-US': {
+    header: 'Sign In',
+    emailPlaceholder: 'Email',
+    passwordPlaceholder: 'Password',
+    signIn: 'Sign In',
+    signUp: 'Sign Up',
+    changePassword: 'Change Password',
+  },
+  'ko-KR': {
+    header: '로그인',
+    emailPlaceholder: '이메일',
+    passwordPlaceholder: '비밀번호',
+    signIn: '로그인',
+    signUp: '회원가입',
+    changePassword: '비밀번호 변경',
+  },
+};
+
+const SignIn: FC<Props> = ({ locale }: Props) => {
   const router = useRouter();
   const pushRouter = (href: string) => (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -41,11 +65,11 @@ const SignIn: FC = () => {
   return (
     <div className="auth-container">
       <div className="auth-modal">
-        <div className="modal-header">Sign In</div>
+        <div className="modal-header">{text[locale].header}</div>
         <div className="modal-content">
           <input
             name="email"
-            placeholder="Email"
+            placeholder={text[locale].emailPlaceholder}
             type="text"
             value={email}
             onChange={handleInputChange}
@@ -53,7 +77,7 @@ const SignIn: FC = () => {
           />
           <input
             name="password"
-            placeholder="Password"
+            placeholder={text[locale].passwordPlaceholder}
             type="password"
             value={password}
             onChange={handleInputChange}
@@ -64,20 +88,20 @@ const SignIn: FC = () => {
               className="btn modal-input modal-link-btn"
               onClick={pushRouter('/change-password')}
             >
-              Change Password
+              {text[locale].changePassword}
             </button>
             <button
               className="btn modal-input modal-link-btn"
               onClick={pushRouter('/signup')}
             >
-              Sign Up
+              {text[locale].signUp}
             </button>
           </div>
           <button
             className="btn modal-input modal-submit-btn"
             onClick={handleSubmit}
           >
-            Sign In
+            {text[locale].signIn}
           </button>
         </div>
       </div>
@@ -86,3 +110,13 @@ const SignIn: FC = () => {
 };
 
 export default SignIn;
+
+export const getStaticProps: GetStaticProps = async (props) => {
+  const { locale } = props;
+
+  return {
+    props: {
+      locale,
+    },
+  };
+};
