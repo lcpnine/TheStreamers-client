@@ -1,7 +1,6 @@
 import { FC } from 'react';
-import { useRouter } from 'next/router';
-import ChanndelCardList from '../components/ChanndelCardList';
-import { ChannelCardProps } from '../interfaces';
+import ChanndelCardList from '../../components/ChanndelCardList';
+import { ChannelCardProps } from '../../interfaces';
 
 const channels: ChannelCardProps[] = [
   {
@@ -27,19 +26,12 @@ const channels: ChannelCardProps[] = [
   },
 ];
 
-const Main: FC = () => {
-  // const pushRouter = (href: string) => (
-  //   e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  // ): void => {
-  //   e.preventDefault();
-  //   router.push(href);
-  // };
-
+const Channels: FC = () => {
   return (
-    <div className="main-container">
+    <div className="channels-container">
       <ChanndelCardList channels={channels} />
     </div>
   );
 };
 
-export default Main;
+export default Channels;
