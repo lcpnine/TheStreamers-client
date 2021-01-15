@@ -1,0 +1,77 @@
+$nav-height: 50px;
+$main: #EA9000;
+$perl: #eae0c8;
+$guyabono: #f8f8f8;
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - #{$nav-height});
+}
+
+.channel-card {
+  display: flex;
+  flex-direction: column;
+  width: 480px;
+  height: 300px;
+  padding: 1.5rem;
+
+  background-color: $main;
+  box-shadow: -1rem 0 1rem rgba(0, 0, 0, .25);
+
+  transition: .2s;
+}
+
+.channel-card:hover {
+  transform: translateY(-1rem);
+}
+
+.channel-card:hover~.channel-card {
+  transform: translateX(240px);
+}
+
+.channel-card:not(:first-child){
+  margin-left: -240px;
+}
+
+.thumbnail {
+  width: 480px;
+  height: 240px;
+  object-fit: cover;
+}
+
+.stream-info-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.stream-info {
+  font-size: 20px;
+  color: $perl;
+}
+
+.channel-card-list {
+  display: flex;
+  padding: 5rem 3rem;
+  overflow: auto;
+}
+
+.channel-card-list::-webkit-scrollbar {
+  width: 10px;
+  height: 10px
+}
+
+.channel-card-list::-webkit-scrollbar-thumb{
+  background-color: $perl;
+  border-radius: 10px;
+  box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, 25), inset -2px -2px 2px rgba(0, 0, 0, .25);
+}
+
+.channel-card-list::-webkit-scrollbar-track{
+  background: linear-gradient(90deg, $guyabono, $perl)
+}
