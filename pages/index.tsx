@@ -1,11 +1,6 @@
 import { useState, FC } from 'react';
-import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import myAxios from '../utils/myAxios';
-
-interface Props {
-  locale: 'en-US' | 'ko-KR';
-}
 
 const text = {
   'en-US': {
@@ -26,8 +21,10 @@ const text = {
   },
 };
 
-const SignIn: FC<Props> = ({ locale }: Props) => {
+const SignIn: FC = () => {
   const router = useRouter();
+  const locale = router.locale === 'ko-KR' ? 'ko-KR' : 'en-US';
+
   const pushRouter = (href: string) => (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
@@ -110,13 +107,3 @@ const SignIn: FC<Props> = ({ locale }: Props) => {
 };
 
 export default SignIn;
-
-export const getStaticProps: GetStaticProps = async (props) => {
-  const { locale } = props;
-
-  return {
-    props: {
-      locale,
-    },
-  };
-};
