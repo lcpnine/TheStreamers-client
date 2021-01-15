@@ -8,4 +8,20 @@ interface ChanndelCardListProps {
   channels: ChannelCardProps[];
 }
 
-export type { ChannelCardProps, ChanndelCardListProps };
+interface MessageProps {
+  username: string;
+  text: string;
+  id: string;
+}
+
+interface ChatBoxProps {
+  streamer: string;
+  messages: MessageProps[];
+}
+
+export type {
+  ChannelCardProps,
+  ChanndelCardListProps,
+  MessageProps,
+  ChatBoxProps,
+};

@@ -3,10 +3,26 @@ import { useRouter } from 'next/router';
 
 const Nav: FC = () => {
   const router = useRouter();
-  const { pathname } = router;
+  const { pathname, query } = router;
+  const { streamer } = query;
 
-  const useEnglish = () => router.push(pathname, pathname, { locale: 'en-US' });
-  const useKorean = () => router.push(pathname, pathname, { locale: 'ko-KR' });
+  const useEnglish = () => {
+    if (streamer) {
+      // for dynamic routing
+      return router.push(`/channels/${streamer}`, `/channels/${streamer}`, {
+        locale: 'en-US',
+      });
+    }
+    return router.push(pathname, pathname, { locale: 'en-US' });
+  };
+  const useKorean = () => {
+    if (streamer) {
+      return router.push(`/channels/${streamer}`, `/channels/${streamer}`, {
+        locale: 'ko-KR',
+      });
+    }
+    return router.push(pathname, pathname, { locale: 'ko-KR' });
+  };
 
   return (
     <div className="nav">

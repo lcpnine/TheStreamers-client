@@ -54,7 +54,7 @@ const SignIn: FC = () => {
     });
     const { status } = result;
     if (status === 200) {
-      router.push('/main');
+      router.push('/channels');
     }
     e.preventDefault();
   };

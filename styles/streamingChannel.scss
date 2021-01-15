@@ -1,0 +1,28 @@
+$nav-height: 50px;
+$main: #EA9000;
+$perl: #eae0c8;
+$guyabono: #f8f8f8;
+$dim-gray: #696969;
+
+.streaming-channel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-width: 1300px;
+  height: calc(100vh - #{$nav-height});
+}
+
+.video-container, .chat-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  height: 90%;
+}
+
+.video {
+  width: 640px;
+  height: 480px;
+  background-color: #000;
+}
