@@ -5,11 +5,27 @@ $guyabono: #f8f8f8;
 $dim-gray: #696969;
 
 .channels-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
   height: calc(100vh - #{$nav-height});
+}
+
+.channel-option-buttons {
+  display: flex;
+  position: absolute;
+  top: 55px;
+  right: 50px;
+}
+
+.add-channel-btn {
+  width: 80px;
+  height: 35px;
+  background-color: $main;
+  color: #000;
+  font-weight: 700;
 }
 
 .channel-card {

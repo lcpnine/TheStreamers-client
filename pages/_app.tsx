@@ -4,6 +4,7 @@ import Nav from '../components/Nav';
 import '../styles/global.scss';
 import '../styles/containers.scss';
 import '../styles/channelCards.scss';
+import '../styles/startChannelModal.scss';
 import '../styles/streamingChannel.scss';
 import '../styles/chatBox.scss';
 
